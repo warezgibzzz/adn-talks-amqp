@@ -1,0 +1,10 @@
+{
+  "generator-reveal": {
+    "presentationTitle": "AMQP протокол, сервера очередей, юзкейсы",
+    "packageVersion": "0.1.0",
+    "useSass": true,
+    "deployToGithubPages": true,
+    "githubUsername": "warezgibzzz",
+    "githubRepository": "adn-talks-amqp"
+  }
+}
