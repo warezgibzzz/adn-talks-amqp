@@ -1,4 +1,9 @@
 [
-  "index.md",
-  "intro.md"
+    "index.md",
+    "intro.md",
+    "synopsis.html",
+    "amqp.html",
+    "brokers.html",
+    "usecases.html",
+    "credits.html"
 ]
