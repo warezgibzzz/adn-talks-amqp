@@ -1,11 +1,32 @@
 # Generated on 2017-03-24 using generator-reveal 1.0.0
 module.exports = (grunt) ->
-
     grunt.initConfig
         pkg: grunt.file.readJSON 'package.json'
-
+        manifest:
+            generate:
+                options:
+                    basePath: './'
+                    cache: [
+                        'index.html'
+                        'slides/*'
+                        'js/*.js'
+                        'css/*.css'
+                        'resources/**'
+                    ]
+                    verbose: true
+                    timestamp: true
+                    hash: true
+                    network: ['http://*', 'https://*']
+                    master: ['index.html']
+                src: [
+                    'dist/*.html'
+                    'dist/js/*.js'
+                    'dist/css/*.css'
+                    'dist/resources/*.css'
+                    'dist/slides/*'
+                ]
+                dest: 'dist/manifest.appcache'
         watch:
-
             livereload:
                 options:
                     livereload: true
@@ -32,19 +53,17 @@ module.exports = (grunt) ->
             jshint:
                 files: ['js/*.js']
                 tasks: ['jshint']
-        
+
             sass:
                 files: ['css/source/theme.scss']
                 tasks: ['sass']
 
         sass:
-
             theme:
                 files:
                     'css/theme.css': 'css/source/theme.scss'
-        
-        connect:
 
+        connect:
             livereload:
                 options:
                     port: 9000
@@ -53,7 +72,6 @@ module.exports = (grunt) ->
                     livereload: true
 
         coffeelint:
-
             options:
                 indentation:
                     value: 4
@@ -63,14 +81,12 @@ module.exports = (grunt) ->
             all: ['Gruntfile.coffee']
 
         jshint:
-
             options:
                 jshintrc: '.jshintrc'
 
             all: ['js/*.js']
 
         copy:
-
             dist:
                 files: [{
                     expand: true
@@ -82,16 +98,15 @@ module.exports = (grunt) ->
                         'resources/**'
                     ]
                     dest: 'dist/'
-                },{
+                }, {
                     expand: true
                     src: ['index.html']
                     dest: 'dist/'
                     filter: 'isFile'
                 }]
 
-        
-        buildcontrol:
 
+        buildcontrol:
             options:
                 dir: 'dist'
                 commit: true
@@ -101,7 +116,6 @@ module.exports = (grunt) ->
                 options:
                     remote: '<%= pkg.repository.url %>'
                     branch: 'gh-pages'
-        
 
 
     # Load all grunt tasks.
@@ -142,16 +156,17 @@ module.exports = (grunt) ->
             'test'
             'sass'
             'buildIndex'
-            'copy'
+            'copy',
+            'manifest'
         ]
 
-    
+
     grunt.registerTask 'deploy',
         'Deploy to Github Pages', [
             'dist'
             'buildcontrol'
         ]
-    
+
 
     # Define default task.
     grunt.registerTask 'default', [
