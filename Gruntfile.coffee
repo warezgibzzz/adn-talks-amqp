@@ -5,7 +5,7 @@ module.exports = (grunt) ->
         manifest:
             generate:
                 options:
-                    basePath: './'
+                    basePath: 'dist'
                     cache: [
                         'index.html'
                         'slides/*'
